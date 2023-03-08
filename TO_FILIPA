@@ -1,0 +1,61 @@
+Hello Filipa, I have 2 problems with the file, the first thing is that I wanted to ask you to review the ramdon forest code, 
+because it went from having 93 columns to only 2 and the error difference is not that great taking into account the work that 
+it means collecting 94 variables with which it can mean only taking 2. So I wanted to ask you to please tell me if you think 
+I missed any important step. And the second thing is that I'm trying to get a graph of a tree, but I get an error that 
+I don't understand, I already checked it in stackover flow, I asked gpt chat and I definitely can't fix it. 
+I leave the error below, although surely you can also see it in the notebook.
+
+---------------------------------------------------------------------------
+FileNotFoundError                         Traceback (most recent call last)
+~\anaconda3\lib\site-packages\pydot.py in create(self, prog, format, encoding)
+   1922         try:
+-> 1923             stdout_data, stderr_data, process = call_graphviz(
+   1924                 program=prog,
+
+~\anaconda3\lib\site-packages\pydot.py in call_graphviz(program, arguments, working_dir, **kwargs)
+    131 
+--> 132     process = subprocess.Popen(
+    133         program_with_args,
+
+~\anaconda3\lib\subprocess.py in __init__(self, args, bufsize, executable, stdin, stdout, stderr, preexec_fn, close_fds, shell, cwd, env, universal_newlines, startupinfo, creationflags, restore_signals, start_new_session, pass_fds, user, group, extra_groups, encoding, errors, text, umask)
+    950 
+--> 951             self._execute_child(args, executable, preexec_fn, close_fds,
+    952                                 pass_fds, cwd, env,
+
+~\anaconda3\lib\subprocess.py in _execute_child(self, args, executable, preexec_fn, close_fds, pass_fds, cwd, env, startupinfo, creationflags, shell, p2cread, p2cwrite, c2pread, c2pwrite, errread, errwrite, unused_restore_signals, unused_gid, unused_gids, unused_uid, unused_umask, unused_start_new_session)
+   1419             try:
+-> 1420                 hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+   1421                                          # no special security
+
+FileNotFoundError: [WinError 2] El sistema no puede encontrar el archivo especificado
+
+During handling of the above exception, another exception occurred:
+
+FileNotFoundError                         Traceback (most recent call last)
+~\AppData\Local\Temp\ipykernel_10108\1149433785.py in <module>
+      9 feature_names=feature_list, rounded=True, precision=1)
+     10 (graph,) = pydot.graph_from_dot_file('small_tree.dot')
+---> 11 graph.write_png('small_tree.png')
+
+~\anaconda3\lib\site-packages\pydot.py in new_method(path, f, prog, encoding)
+   1741                     encoding=None):
+   1742                 """Refer to docstring of method `write.`"""
+-> 1743                 self.write(
+   1744                     path, format=f, prog=prog,
+   1745                     encoding=encoding)
+
+~\anaconda3\lib\site-packages\pydot.py in write(self, path, prog, format, encoding)
+   1826                 f.write(s)
+   1827         else:
+-> 1828             s = self.create(prog, format, encoding=encoding)
+   1829             with io.open(path, mode='wb') as f:
+   1830                 f.write(s)
+
+~\anaconda3\lib\site-packages\pydot.py in create(self, prog, format, encoding)
+   1931                 args[1] = '"{prog}" not found in path.'.format(
+   1932                     prog=prog)
+-> 1933                 raise OSError(*args)
+   1934             else:
+   1935                 raise
+
+FileNotFoundError: [WinError 2] "dot" not found in path.
